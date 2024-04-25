@@ -7,6 +7,19 @@
         "outbound_caller_id_number": "",
         "destination_number": "908505320060",
         "dialed_user": "05377903030",
+        "call_uuid": "17f28202-c904-4c10-9c88-5c38a26a61dc",
+        "start_stamp": "",
+        "queue": "",
+        "datetime": "2024-04-26 02:39:31"
+    },
+    {
+        "event_type": "ringing",
+        "domain_id": "6793",
+        "direction": "inbound",
+        "caller_id_number": "05418869037",
+        "outbound_caller_id_number": "",
+        "destination_number": "908505320060",
+        "dialed_user": "05377903030",
         "call_uuid": "8410ffab-33d6-438f-bad9-a0a267c7ffc9",
         "start_stamp": "",
         "queue": "",
@@ -349,5 +362,18 @@
         "start_stamp": "",
         "queue": "",
         "datetime": "2024-04-26 02:26:10"
+    },
+    {
+        "event_type": "ringing",
+        "domain_id": "6793",
+        "direction": "inbound",
+        "caller_id_number": "05418869037",
+        "outbound_caller_id_number": "",
+        "destination_number": "908505320060",
+        "dialed_user": "05377903030",
+        "call_uuid": "9c976600-bb0d-4f54-a14a-b20fef3643b9",
+        "start_stamp": "",
+        "queue": "",
+        "datetime": "2024-04-26 02:34:12"
     }
 ]

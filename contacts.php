@@ -21,9 +21,10 @@ if (is_array($rows)) {
 }
 ?>
 
-<div class="content">
-    <h4 class="title">Watsapp Business Service</h4>
-    <table class="table table-striped">
+
+<h4 class="title">Watsapp Business Service</h4>
+<div class="table-responsive" style="height: 80vh!important;">
+    <table class="table table-responsive table-striped">
         <thead>
             <tr>
                 <th>#ID</th>
