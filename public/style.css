@@ -1,0 +1,20 @@
+body {
+    font-family: sans-serif;
+    background: #F4F6F9;
+}
+
+.title{
+    text-align: center;
+    padding: .5rem;
+}
+
+li{
+    list-style: none;
+}
+.menu{
+    font-size: 1.22rem;
+}
+
+.container{
+    max-width: 1080px;
+}
