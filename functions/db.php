@@ -2,8 +2,9 @@
 session_start();
 ob_start();
 ini_set('display_errors', 1);
+ini_set('default_charset', 'UTF-8');
 
-require_once "functions/fnGeneral.php";
+require_once "fnGeneral.php";
 
 function dbConnect()
 {
@@ -81,7 +82,7 @@ function convAscitoTr($text)
 	$text = str_replace("Ã§", "ç", $text);
 	$text = str_replace("Ã", "Ç", $text);
 	$text = str_replace("â", "", $text);
-	return $text;
+	return "çöüiöı";
 }
 
 

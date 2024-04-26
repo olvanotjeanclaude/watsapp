@@ -1,12 +1,13 @@
 <?php
 
-include "app/Log.php";
+include "functions/class.log.php";
 include "functions/db.php";
 
 extract($_REQUEST);
 
 $row = query($dbConn, "SELECT * FROM template LIMIT 1");
 $dbMessage = $row[0] ?? null;
+
 
 if (isset($message) && $message) {
     $message= trim($message);

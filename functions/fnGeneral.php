@@ -483,13 +483,26 @@ function eposta($eposta)
   }
 }
 
-function basepath($path = '')
+function ip()
 {
-  // Define the base path constant if not already defined
-  if (!defined('BASE_PATH')) {
-    define('BASE_PATH', realpath(dirname(__FILE__)) . '/');
+  if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+    $ip = $_SERVER['HTTP_CLIENT_IP'];
+  } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+    $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+  } else {
+    $ip = $_SERVER['REMOTE_ADDR'];
   }
 
-  // Concatenate the base path with the provided path
-  return BASE_PATH . ltrim($path, '/');
+  return $ip;
+}
+
+function countryCode()
+{
+  $countryCode = file_get_contents("http://ipinfo.io/{$_SERVER['REMOTE_ADDR']}/country") ?? null;
+
+  if ($countryCode) {
+    $countryCode = str_replace("\n", "", $countryCode);
+  }
+
+  return $countryCode;
 }
