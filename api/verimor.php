@@ -64,8 +64,8 @@ function storeVerimor($json, $phone)
 
 function sendWatsupMessage($number)
 {
-    $instance = "instance84349";
-    $token = "2o1nyvqtgp0w43z8";
+    $instance = "instance84393";
+    $token = "4g40t35vm47e74dh";
 
     if (countryCode() != "TR") {
         $number = "+" . $number;

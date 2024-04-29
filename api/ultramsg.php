@@ -8,7 +8,7 @@ try {
 
     $requestData = json_decode($requestData, true);
 
-    Log::info($requestData,"api.log");
+    Log::info($requestData,"ultramsg.log");
 } catch (\Throwable $th) {
     Log::error($th->getMessage());
 }
