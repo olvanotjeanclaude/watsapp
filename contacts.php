@@ -2,7 +2,8 @@
 
 header('Content-Type: text/html; charset=UTF-8');
 
-include "functions/db.php";
+require_once "functions/db.php";
+require_once "functions/classUsers.php";
 
 
 extract($_REQUEST);

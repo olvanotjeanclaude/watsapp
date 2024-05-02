@@ -10,10 +10,10 @@ function dbConnect()
 {
 	global $dbConn, $dbData;
 
-	$dbServer   = 'localhost';
-	$dbUser     = 'mydatatest_watsapp';
-	$dbPassword = 'JAyL6Z244XqabrrVKXdj';
-	$MyDataBase = 'mydatatest_watsapp';
+	$dbServer   = '192.168.168.180';
+	$dbUser     = 'mydatatest';
+	$dbPassword = 'MyDataTest!*2024-';
+	$MyDataBase = 'MYDATATEST';
 
 	$dbConn = mysqli_connect($dbServer, $dbUser, $dbPassword);
 	$dbConn->set_charset("utf8");
@@ -44,6 +44,71 @@ function query($dbConn, $sql)
 
 	return $dizi;
 }
+
+function login($usercode, $password)
+{
+	$sql = "SELECT * FROM USERS U 
+            WHERE USERCODE='$usercode' AND PASSWORD='$password' AND AKTIF='1' ";
+	
+	$user= query($GLOBALS["dbConn"], $sql)[0] ?? null;
+
+	return !is_null($user);
+}
+
+function logout()
+{
+	session_unset();
+	session_destroy();
+
+	header("Location: login.php");
+}
+
+function preparedQuery($dbConn, $sql, $params = array())
+{
+	$stmt = $dbConn->prepare($sql);
+
+	if (!$stmt) {
+		die("Preparation error: " . $dbConn->error);
+	}
+
+	// Bind parameters 
+	if (!empty($params)) {
+		$types = "";
+		$bindParams = array();
+		foreach ($params as $param) {
+			if (is_int($param)) {
+				$types .= "i"; // Integer
+			} elseif (is_float($param)) {
+				$types .= "d"; // Double
+			} elseif (is_string($param)) {
+				$types .= "s"; // String
+			} else {
+				$types .= "b"; // Blob
+			}
+			$bindParams[] = $param;
+		}
+		// Bind parameters dynamically
+		$stmt->bind_param($types, ...$bindParams);
+	}
+
+	// Execute the statement
+	$stmt->execute();
+
+	// Check if it's a SELECT statement
+	if ($stmt->field_count > 0) {
+		$result = $stmt->get_result();
+		$rows = $result->fetch_all(MYSQLI_ASSOC);
+	} else {
+		// If it's not a SELECT statement, return true or false
+		$rows = $stmt->affected_rows > 0;
+	}
+
+	// Close the statement
+	$stmt->close();
+
+	return $rows;
+}
+
 
 function queryInsertId($dbConn, $sql)
 {
@@ -85,7 +150,24 @@ function convAscitoTr($text)
 	return "çöüiöı";
 }
 
+function htmlDeCode($text)
+{
+	return htmlspecialchars_decode($text);
+}
 
+function row($row, $i, $field)
+{
+	if (@array_key_exists($field, $row[$i])) {
+		$val = htmlDeCode(convAscitoTr($row[$i][$field]));
+	} else {
+		$val = "";
+		if ($_SERVER['REMOTE_ADDR'] == "185.42.172.122") {
+			//echo "$field bulunamadı<b>{Bu Hata Sadece VPN ile Görünür}</b><br>";
+		}
+	}
+
+	return stripslashes($val);
+}
 
 function prepareSql($table, $dzField, $post)
 {
@@ -222,4 +304,4 @@ $website     = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . '/
 $url         = $_SERVER['SERVER_NAME'] . "/" . $_SERVER['REQUEST_URI'];
 $browser     = findBrowser();
 $ip          = $_SERVER['REMOTE_ADDR'];
-$programAdress = "https://istakip.mydata.com.tr";
+$programAdress = "https://mydatatest.com.tr";
