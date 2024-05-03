@@ -8,9 +8,9 @@ require_once "functions/classUsers.php";
 
 extract($_REQUEST);
 
-$startDate = $startDate ?? date("Y-m-d");
-$endDate = $endDate ?? date("Y-m-d");
-$keyword = $keyword ?? "";
+$startDate  = $startDate ?? date("Y-m-d");
+$endDate    = $endDate ?? date("Y-m-d");
+$keyword    = $keyword ?? "";
 
 $sql =  "SELECT * FROM verimor 
         WHERE DATE(created_at) 
@@ -26,15 +26,15 @@ $phones = "";
 
 if (is_array($rows)) {
     foreach ($rows as $index => $row) {
-        $phones .= "<tr>
-                        <td>{$row['id']}</td>
-                        <td>{$row['phone']}</td>
-                        <td>{$row['created_at']}</td>
-                    </tr>";
+        $phones .= 
+        "<tr>
+            <td>{$row['id']}</td>
+            <td>{$row['phone']}</td>
+            <td>{$row['created_at']}</td>
+        </tr>";
     }
 }
 ?>
-
 
 <h4 class="title">Watsapp Business Service (<?= $countAll["total"] ?>)</h4>
 <form action="" method="post" id="filter">
