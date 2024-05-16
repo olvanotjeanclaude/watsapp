@@ -40,7 +40,7 @@ switch ($action) {
     case $actions["cancel"]:
         if ($ticketID) {
             $ticketID = strtoupper($ticketID);
-            echo json_encode(["message" => "PNR $pnr: $ticketID numaralı biletiniz iptal edildi"]);
+            echo json_encode(["message" => "PNR $pnr: biletiniz iptal edildi"]);
         } else {
             echo getPNR($pnr,"iptal");
         }
@@ -53,7 +53,7 @@ switch ($action) {
     case $actions["refund"]:
         if ($ticketID) {
             $ticketID = strtoupper($ticketID);
-            echo json_encode(["message" => "PNR $pnr: $ticketID numaralı biletiniz iade edildi"]);
+            echo json_encode(["message" => "PNR $pnr: $ticketI biletiniz iade edildi"]);
         } else {
             echo getPNR($pnr,"iade");
         }
